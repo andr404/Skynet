@@ -1,0 +1,10 @@
+D:\ANDR_404\MyProgramms\Skynet\Kommivoyajor\bin\Debug\Kommivoyajor.exe.config
+D:\ANDR_404\MyProgramms\Skynet\Kommivoyajor\bin\Debug\Kommivoyajor.exe
+D:\ANDR_404\MyProgramms\Skynet\Kommivoyajor\bin\Debug\Kommivoyajor.pdb
+D:\ANDR_404\MyProgramms\Skynet\Kommivoyajor\obj\Debug\Kommivoyajor.csprojAssemblyReference.cache
+D:\ANDR_404\MyProgramms\Skynet\Kommivoyajor\obj\Debug\Kommivoyajor.Form1.resources
+D:\ANDR_404\MyProgramms\Skynet\Kommivoyajor\obj\Debug\Kommivoyajor.Properties.Resources.resources
+D:\ANDR_404\MyProgramms\Skynet\Kommivoyajor\obj\Debug\Kommivoyajor.csproj.GenerateResource.cache
+D:\ANDR_404\MyProgramms\Skynet\Kommivoyajor\obj\Debug\Kommivoyajor.csproj.CoreCompileInputs.cache
+D:\ANDR_404\MyProgramms\Skynet\Kommivoyajor\obj\Debug\Kommivoyajor.exe
+D:\ANDR_404\MyProgramms\Skynet\Kommivoyajor\obj\Debug\Kommivoyajor.pdb
