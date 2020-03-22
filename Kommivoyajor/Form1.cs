@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Collections;
 
 namespace Kommivoyajor
 {
@@ -14,6 +15,7 @@ namespace Kommivoyajor
     {
         Button[] but_mas;
         Label[] lab_mas;
+        int[] feramon_mas;
         int city_count;
         //
         int temp_count_city = 0;
@@ -51,10 +53,22 @@ namespace Kommivoyajor
                     button1.Enabled = false;
                     pictureBox1.Enabled = true;
                     mas = new Point[city_count + 1];
+
+                    feramon_mas = new int[city_count + 1];
+                    Random r = new Random();
+
+
                 }
             }
             else
                 MessageBox.Show("Введите число!");
+        }
+
+        public double L2(Point p1, Point p2)
+        {
+            double temp = Math.Sqrt(Math.Pow(p2.X - p1.X, 2) + Math.Pow(p2.Y - p1.Y, 2));
+
+            return temp;
         }
 
         private void PictureBox1_MouseDown(object sender, MouseEventArgs e)
@@ -83,6 +97,17 @@ namespace Kommivoyajor
                     textBox3.Enabled = true;
                     textBox4.Enabled = true;
                     button11.Enabled = true;
+
+                    textBox5.Enabled = true;
+                    textBox6.Enabled = true;
+                    textBox7.Enabled = true;
+                    textBox8.Enabled = true;
+                    textBox9.Enabled = true;
+                    button13.Enabled = true;
+
+                    label24.Text += L(mas) + L2(mas[mas.Length - 1], mas[0]);
+                    if (int.Parse(textBox1.Text) < 6)
+                        button12.Enabled = true;
                 }
             }
             else
@@ -107,13 +132,15 @@ namespace Kommivoyajor
                     ///////
 
                     Otjog a = new Otjog(mas, t, koef, end_koef);
-                    MessageBox.Show(a.L().ToString());
                     Point[] res = a.DoIt();
-                    for(int i =0 ; i < res.Length; i++)
-                    {
-                        MessageBox.Show(res[i].ToString());
-                    }
-                    MessageBox.Show(a.L().ToString());
+
+                    string str = "";
+
+                    foreach (Point p in res)
+                        str += p.ToString() + "\n";
+
+                    MessageBox.Show("Возможная минимальная длина: " + Math.Round(a.L(), 2).ToString());
+                    MessageBox.Show(str);
 
                     ////////
                 }
@@ -130,7 +157,7 @@ namespace Kommivoyajor
             for(int i = 0; i < mas_pereb.Length; i++)
             {
                 mas_pereb[i] = mas[i + 1];
-                temp_mas[i] = i + 1;
+                temp_mas[i] = i;
             }
 
 
@@ -146,8 +173,8 @@ namespace Kommivoyajor
 
                 for(int i = 0; i < str.Length; i++)
                 {
-                    int temp = int.Parse(str[i].ToString()) - 1;
-                    mas_point[i] = mas_pereb[temp];
+                    int temp = int.Parse(str[i].ToString());
+                    mas_point[i + 1] = mas_pereb[temp];
 
                 }
                 // Получен новый переб. массив с начальной и конечной точкой (mas_point)
@@ -165,13 +192,19 @@ namespace Kommivoyajor
                 }
 
             }
-            label15.Text = pereb_best[0].ToString();
-            label16.Text = pereb_best[1].ToString();
-            label17.Text = pereb_best[2].ToString();
-            label18.Text = pereb_best[3].ToString();
-            label19.Text = pereb_best[4].ToString();
-            label20.Text = pereb_best[5].ToString();
-            MessageBox.Show("Минимальная длина = " + pereb_minL);
+            label15.Text += pereb_best[0].ToString();
+            label16.Text += pereb_best[1].ToString();
+            label17.Text += pereb_best[2].ToString();
+            label18.Text += pereb_best[3].ToString();
+            label19.Text += pereb_best[4].ToString();
+            if (pereb_best.Length == 6)
+                label20.Text += pereb_best[5].ToString();
+            else
+                label20.Text = "";
+            button12.Text = Math.Round(pereb_minL, 2).ToString();
+            button12.Enabled = false;
+            button12.BackColor = Color.White;
+            MessageBox.Show("Минимальная длина = " + Math.Round(pereb_minL));
 
         }
 
@@ -202,6 +235,33 @@ namespace Kommivoyajor
                 lst.RemoveAt(i);
                 ShowAllCombinations(lst, ref list, current + arr[i].ToString());
             }
+        }
+
+        private void Button13_Click(object sender, EventArgs e)
+        {
+            
+            Hashtable hashtable = new Hashtable();
+            Random r = new Random();
+
+            for (int i = 0; i < mas.Length - 1; i++) 
+            {
+                for (int j = i + 1; j < mas.Length; j++)
+                {
+                    hashtable[mas[i].ToString() + mas[j].ToString()] = r.Next(1, 6);
+                }
+            }
+
+            
+            Murav m = new Murav(mas, 500, hashtable, 1, 1, 1000, 0.6);
+            Point[] res = m.DoIt().ToArray();
+
+            string str = "";
+
+            foreach (Point p in res)
+                str += p.ToString() + "\n";
+
+            MessageBox.Show("Возможная минимальная длина: " + Math.Round(L(res), 2).ToString());
+            MessageBox.Show(str);
         }
     }
 }

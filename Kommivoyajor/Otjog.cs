@@ -45,9 +45,6 @@ namespace Kommivoyajor
                 RandomChange();
                 double l2 = L();
 
-             //   MessageBox.Show("l1 = " + l1);
-             //   MessageBox.Show("l2 = " + l2);
-
                 if (l2 < l1)
                     continue;
                 else
@@ -55,9 +52,6 @@ namespace Kommivoyajor
                     double delta = l2 - l1;
                     double p = 100 * Math.Pow(Math.E, delta / t * -1);
                     int r = new Random().Next(0, 100);
-
-                //    MessageBox.Show("p = " + p.ToString());
-                //    MessageBox.Show("r = " + r.ToString());
 
                     if (p > r)
                     {
