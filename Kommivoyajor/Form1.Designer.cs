@@ -577,7 +577,7 @@
             this.textBox9.Name = "textBox9";
             this.textBox9.Size = new System.Drawing.Size(100, 20);
             this.textBox9.TabIndex = 60;
-            this.textBox9.Text = "0.9";
+            this.textBox9.Text = "0,9";
             // 
             // label29
             // 

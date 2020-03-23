@@ -204,7 +204,7 @@ namespace Kommivoyajor
             button12.Text = Math.Round(pereb_minL, 2).ToString();
             button12.Enabled = false;
             button12.BackColor = Color.White;
-            MessageBox.Show("Минимальная длина = " + Math.Round(pereb_minL));
+            MessageBox.Show("Минимальная длина = " + Math.Round(pereb_minL, 2));
 
         }
 
@@ -251,17 +251,27 @@ namespace Kommivoyajor
                 }
             }
 
-            
-            Murav m = new Murav(mas, 500, hashtable, 1, 1, 1000, 0.6);
-            Point[] res = m.DoIt().ToArray();
+            int mur_count;
+            double alfa, betta, q, pamyat;
 
-            string str = "";
+            if(!int.TryParse(textBox5.Text, out mur_count) || !double.TryParse(textBox6.Text, out alfa) || !double.TryParse(textBox7.Text, out betta) || !double.TryParse(textBox8.Text, out q) || !double.TryParse(textBox9.Text, out pamyat))
+            {
+                MessageBox.Show("Что-то пошло не так...");
+            }
+            else
+            {
+                Murav m = new Murav(mas, mur_count, hashtable, alfa, betta, q, pamyat);
+                Point[] res = m.DoIt().ToArray();
 
-            foreach (Point p in res)
-                str += p.ToString() + "\n";
+                string str = "";
 
-            MessageBox.Show("Возможная минимальная длина: " + Math.Round(L(res), 2).ToString());
-            MessageBox.Show(str);
+                foreach (Point p in res)
+                    str += p.ToString() + "\n";
+
+                MessageBox.Show("Возможная минимальная длина: " + Math.Round(L(res), 2).ToString());
+                MessageBox.Show(str);
+            }
+
         }
     }
 }
